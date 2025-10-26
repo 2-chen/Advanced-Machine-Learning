@@ -30,12 +30,14 @@
 * 参数初始化
   * Xavier初始化：标准差 $=\sqrt{\frac{2}{n_{in}+n_{out}}}$ ，适用于Sigmoid/Tanh激活函数
   * He初始化 $=\sqrt{\frac{2}{n_{in}}}$ ，适用于ReLU及其变体
-* 正则化（L2、Dropout）
+* 正则化
   * L2正则化： $L=L_{CE}+\frac{\lambda}{2}|w|^2_2$ ，防止过拟合，使权重趋向于0
+  * Dropout：训练时随机失活神经元，如以0.5概率关闭隐藏层神经元，测试时使用全连接但权重乘以0.5
 
 # Convolutional Neural Network Architectures
 
 * 卷积操作、池化、填充、步幅
+  * 
 * CNN 典型结构：LeNet、AlexNet、VGG、ResNet
 * 特征图、感受野、参数共享
 * 可视化卷积滤波器与特征图
