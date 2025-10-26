@@ -4,8 +4,6 @@
   * 深度学习通过多层非线性变换自动学习数据表征（如CNN卷积层逐层提取边缘→纹理→语义），传统机器学习依赖人工设计特征
   * 深度学习通过深度神经网络的高容量拟合复杂模式，但需通过正则化（L2、Dropout）和对抗训练防止过拟合
   * 深度学习需要海量标注数据（因为要学习非常深层的知识），而传统机器学习在小数据表现更优
-  * 
-
 
 * 数据表示（特征 vs. 表征学习）
   * 特征空间层次化：像素级原始数据→浅层特征（边缘）→中层特征（物体部件）→高层语义（类别）
@@ -16,14 +14,24 @@
 
 # Optimization and Loss Functions
 
-Adam 优化器
+* Adam优化器
+  * 动量与自适应学习率结合 $m_t = \beta_1 m_{t-1} + (1 - \beta_1)g_t$ ， $\quad v_t = \beta_2 v_{t-1} + (1 - \beta_2)g_t^2$ ， $\hat{m}_t = \frac{m_t}{1 - \beta_1^t}$ ， $\hat{v}_t = \frac{v_t}{1 - \beta_2^t}$ ， $\Delta \mathbf{w} = -\alpha \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}$ ，超参数设置： $\beta_1 = 0.9, \beta_2 = 0.999, \epsilon = 1e - 8$ 
+
+* 梯度消失与爆炸的解决
+  * ResNet的残差连接： $y_l=x_l+F(x_l,W_l)$ ，反向传播时梯度可直接通过恒等映射传递，避免梯度消失
 
 # Perceptron and Neural Network
 
-感知机模型与前馈神经网络结构
-激活函数（Sigmoid、ReLU、Tanh、LeakyReLU）
-多层感知机（MLP）与非线性建模能力
-参数初始化、正则化（L2、Dropout）
+* 感知机模型与前馈神经网络结构
+* 激活函数（Sigmoid、ReLU、Tanh、LeakyReLU）
+  * ReLU: $f(x)=\max (0,x)$ ，解决梯度消失问题，但存在dead ReLU问题
+  * Leaky ReLU: $f(x)=\max (0.01x,x)$ ，缓解Dead ReLU
+* 多层感知机（MLP）与非线性建模能力
+* 参数初始化
+  * Xavier初始化：标准差 $=\sqrt{\frac{2}{n_{in}+n_{out}}}$ ，适用于Sigmoid/Tanh激活函数
+  * He初始化 $=\sqrt{\frac{2}{n_{in}}}$ ，适用于ReLU及其变体
+* 正则化（L2、Dropout）
+  * L2正则化： $L=L_{CE}+\frac{\lambda}{2}|w|^2_2$ ，防止过拟合，使权重趋向于0
 
 # Convolutional Neural Network Architectures
 
