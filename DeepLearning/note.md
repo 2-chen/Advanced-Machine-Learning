@@ -93,7 +93,8 @@
 * Transformer 架构（Encoder-Decoder、Positional Encoding）
 * 多头注意力、层归一化、残差连接
 * 后续变体：BERT、GPT、T5、ViT（Vision Transformer）
-* Mamba:
+* Mamba:基于状态空间模型(State Space Model, SSM)的深度学习架构，专为长序列建模设计，复杂度为 $O(n)$
+  * 选择性状态更新：结合输入动态调整对历史信息的记忆或遗忘，如重点关注当前相关的前文
 
 # Course Project 3: Image Classification with Vision Transformer
 
@@ -111,10 +112,12 @@
 
 * 生成对抗网络（GAN）：
   * Generator vs. Discriminator
-  * 极小极大博弈： $\min_G \max_D E_{x\sim p_{data}}[\log D(x)]+E_{z\sim p_z}[\log (1-D(G(z)))]$
-* 深度生成模型：VAE、GAN
+  * 极小极大博弈： $\min_G \max_D E_{x\sim p_{data}}[\log D(x)]+E_{z\sim p_z}[\log (1-D(G(z)))]$ ，两个参与者通过对抗互动达到平衡，一方最小化某个目标，一方最大化同一个目标
+* 深度生成模型：VAE
+  * GAN：极小极大模型的典型应用，生成器尽可能生成逼真的假样本，判别器尽可能区分假样本
   * Diffusion Models：正向扩散逐步加高斯噪声，反向去噪逐步恢复图像
 * 训练技巧与常见问题（模式崩塌、训练不稳定）
+  * 模式崩塌：生成器仅能生成数据分布中少数几种模式，而非覆盖全部真实数据的多样性，本质是生成器会投机取巧，仅学习能骗过判别器的少数样本特征，找到局部最优解而丧失多样性
 * 应用：图像生成、风格迁移、数据增强
 
 # Course Project 4: Generative Models and Applications
